@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Regular Expression Hexagonal Puzzle</title>
+	</head>
+	<body>
+		<canvas id="the-canvas" width="999" height="900" style="border: 1px solid red; background: url(puzzle.png)"></canvas>
+		
+		
+		<script>
+		var context = document.getElementById('the-canvas').getContext('2d');
+		context.font = "24px Arial";
+		
+		var 
+			x0 = 412,
+			y0 = 278,
+			dx = 41.5, 
+			dy = 36;
+		
+		
+		function onBoard(row, col)
+		{
+			if (row < 1 || row > 13)
+				return false;
+			
+			if (col < 1)
+				return false;
+			
+			if (row <= 7 && col > row + 6)
+				return false;
+			
+			if (row > 7 && col > 13)
+				return false;
+			
+			if (row > 7 && col <= row-7)
+				return false;
+
+			return true;
+		}
+		
+		function putChar(row, col, c)
+		{
+			var x, y;
+			
+			if ( ! onBoard(row, col) )
+				return;
+			
+			x = x0 - (dx/2)*(row-1) + dx*(col-1);
+			y = y0 + dy*(row-1);
+
+			context.fillText(c, x, y);
+		}
+
+		for (row=1; row<=7; row++)
+		{
+			for (col=1; col<=6+row; col++)
+			{
+				putChar(row, col, "X");
+			}
+		}
+		
+		for (row=8; row<=13; row++)
+		{
+			for (col=row-6; col<=13; col++)
+			{
+				putChar(row, col, "X");
+			}
+		}
+		</script>
+	</body>
+</html>
