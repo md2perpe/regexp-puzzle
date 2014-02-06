@@ -52,19 +52,21 @@
 			context.fillText(c, x, y);
 		}
 
-		for (row=1; row<=7; row++)
-		{
-			for (col=1; col<=6+row; col++)
+		window.onload = function () {
+			for (row=1; row<=7; row++)
 			{
-				putChar(row, col, "X");
+				for (col=1; col<=6+row; col++)
+				{
+					putChar(row, col, "X");
+				}
 			}
-		}
-		
-		for (row=8; row<=13; row++)
-		{
-			for (col=row-6; col<=13; col++)
+			
+			for (row=8; row<=13; row++)
 			{
-				putChar(row, col, "X");
+				for (col=row-6; col<=13; col++)
+				{
+					putChar(row, col, "X");
+				}
 			}
 		}
 		</script>
